@@ -2,13 +2,32 @@ import './App.css';
 import NavBar from "./components/NavBar/NavBar";
 import SearchBar from "./components/SearchBar/SearchBar";
 import Header from "./components/Header/Header";
+import {Route, Routes} from "react-router-dom";
+import Map from "./components/Map/Map";
+import Profile from "./components/Profile/Profile";
+import Messages from "./components/Messenger/Messages";
+import Users from "./components/Users/Users";
 
 function App() {
   return (
     <>
         <Header />
-        <SearchBar />
-        <NavBar />
+        <main className="section-main">
+            <div className='search-bar'>
+                <SearchBar />
+            </div>
+            <div className='nav-bar'>
+                <NavBar />
+            </div>
+            <section className='section'>
+                <Routes>
+                    <Route path='/profile' element={<Profile />} />
+                    <Route path='/messages' element={<Messages />} />
+                    <Route path='/users' element={<Users />} />
+                    <Route path='/map' element={<Map/>} />
+                </Routes>
+            </section>
+        </main>
     </>
   );
 }

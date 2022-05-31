@@ -13,7 +13,9 @@
   display: flex;
   flex-direction: column;
 }
-
+a{
+  text-decoration: none;
+}
 .navbarLink{
   background: #F6F6F6;
   border-radius: 8px;
@@ -35,8 +37,12 @@
   &:hover, &:active{
     background: rgba(253, 110, 53, 0.3);
   }
+
 }
 
-.navbarLinkActive{
-  background: rgba(253, 110, 53, 0.5);
+.active{
+  div{
+    background: rgba(253, 110, 53, 0.5);
+  }
 }
+

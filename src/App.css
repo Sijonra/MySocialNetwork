@@ -1,1 +1,26 @@
+.section-main{
+    padding: 44px 0 0 0;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    column-gap: 44px;
+    row-gap: 44px;
+    grid-template-columns: 1fr 4fr;
+}
 
+.search-bar{
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+.nav-bar{
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+.section{
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
