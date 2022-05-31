@@ -6,7 +6,7 @@ import {Route, Routes} from "react-router-dom";
 import Map from "./components/Map/Map";
 import Profile from "./components/Profile/Profile";
 import Messages from "./components/Messenger/Messages";
-import Users from "./components/Users/Users";
+import UsersContainer from "./components/Users/UsersContainer";
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
                 <Routes>
                     <Route path='/profile' element={<Profile />} />
                     <Route path='/messages' element={<Messages />} />
-                    <Route path='/users' element={<Users />} />
+                    <Route path='/users' element={<UsersContainer />} />
                     <Route path='/map' element={<Map/>} />
                 </Routes>
             </section>
