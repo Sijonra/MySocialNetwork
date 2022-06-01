@@ -3,26 +3,36 @@ import Users from "./Users";
 import {connect} from "react-redux";
 import {setCurrentPageAC, setTotalUsersCountAC, setUsersAC} from "../../redux/usersPageReducer";
 import axios from "axios";
+import {userApi} from "../../api/api";
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response=>{
-            this.props.setTotalUsersCount(response.data.totalCount);
+        // axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response=>{
+        //     this.props.setTotalUsersCount(response.data.totalCount);
+        // })
+        userApi.getTotalUsersCount().then((data)=>{
+            this.props.setTotalUsersCount(data.totalCount);
         })
-
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.usersOnPage}`).then(response=>{
-            this.props.setUsers(response.data.items);
+        // axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.usersOnPage}`).then(response=>{
+        //     this.props.setUsers(response.data.items);
+        // })
+        userApi.getUsers(this.props.currentPage, this.props.usersOnPage).then((data)=>{
+            this.props.setUsers(data.items);
         })
     }
 
     setCurrentPage = (pageNumber) =>{
         this.props.setCurrentPage(pageNumber);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.usersOnPage}`).then(response=>{
-            //console.log(response.data.items);
-            this.props.setUsers(response.data.items);
-            this.props.setTotalUsersCount(response.data.totalCount);
-        });
+        // axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.usersOnPage}`).then(response=>{
+        //     //console.log(response.data.items);
+        //     this.props.setUsers(response.data.items);
+        //     this.props.setTotalUsersCount(response.data.totalCount);
+        // });
+        userApi.getUsers(pageNumber, this.props.usersOnPage).then((data)=>{
+            this.props.setUsers(data.items);
+            this.props.setTotalUsersCount(data.totalCount);
+        })
     }
 
     render(){
