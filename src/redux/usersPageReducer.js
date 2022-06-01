@@ -1,22 +1,24 @@
-const INCREMENT = "INCREMENT";
+const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
 
 let initialState = {
-    page: 1,
+    totalUsersCount: 21,
+    usersOnPage: 5,
+
 }
 
 const usersPageReducer = (state = initialState, action) =>{
     switch (action.type){
-        case INCREMENT:{
-            let tmpState = {...state};
-            tmpState.page++;
+        case SET_TOTAL_USERS_COUNT:{
+            let tmpState = {...state}
+            tmpState.totalUsersCount = action.totalUsersCount;
             return tmpState;
         }
         default:{
-            return state;
+            return state
         }
     }
 }
 
-export let incrementPageAC = () => {return{type: INCREMENT}};
+export let setTotalUsersCountAC = (totalUsersCount) => {return{type: SET_TOTAL_USERS_COUNT, totalUsersCount: totalUsersCount}}
 
 export default usersPageReducer;
