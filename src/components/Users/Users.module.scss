@@ -1,0 +1,14 @@
+.pagination{
+  max-width: 900px;
+  overflow: scroll;
+}
+.paginationItem{
+  margin-right: 5px;
+  cursor: pointer;
+}
+.paginationItemActive{
+  color: rgba(253, 110, 53, 1);
+  margin-right: 5px;
+}
+.users{}
+.user{}
