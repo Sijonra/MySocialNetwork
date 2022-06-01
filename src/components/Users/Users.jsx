@@ -8,12 +8,7 @@ const Users = (props) =>{
     }
 
     return(
-        <section>
-            total: {props.totalUsersCount}
-            <br/>
-            on page: {props.usersOnPage}
-            <br/>
-            total users pages: {props.totalUsersPages}
+        <div className={style.usersPage}>
             <div className={style.pagination}>
                 {
                     pagesPagination.map(element=>{
@@ -30,16 +25,25 @@ const Users = (props) =>{
                 }
             </div>
             <div className={style.users}>
-
                 {props.users.map(user=>{
                     return(
-                        <div key={user.id} className={style.user}>{user.name}</div>
+                        <div key={user.id} className={style.user}>
+                            <img src={user.photos.small ? user.photos.small : 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png'} alt="" className={style.userAvatar}/>
+                            <div className={style.userInfo}>
+                                <p className={style.userName}>{user.name}</p>
+                                <p className={style.userId}>@{user.id}</p>
+                                <p className={style.userStatus}>
+                                    {user.status ? user.status : 'Пользователь не добавил статус'}
+                                </p>
+                            </div>
+                            <button className={style.followButton}>
+                                follow
+                            </button>
+                        </div>
                     )
                 })}
-
-
             </div>
-        </section>
+        </div>
     )
 }
 export default Users;

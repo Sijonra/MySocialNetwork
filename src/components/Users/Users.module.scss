@@ -1,5 +1,10 @@
+.usersPage{
+  background: #FFFFFF;
+  padding: 12px 0;
+}
 .pagination{
   max-width: 900px;
+  margin: 0 auto 40px auto;
   overflow: scroll;
 }
 .paginationItem{
@@ -10,5 +15,58 @@
   color: rgba(253, 110, 53, 1);
   margin-right: 5px;
 }
-.users{}
-.user{}
+.users{
+  width: 600px;
+  margin: 0 auto;
+}
+.user{
+  padding: 12px;
+  background: #EEEEEE;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+.userInfo{
+
+}
+.userAvatar{
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+}
+.userName{
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 19px;
+  color: #000000;
+  text-align: center;
+}
+.userId{
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #000000;
+  text-align: center;
+}
+.userStatus{
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  color: #000000;
+  text-align: center;
+}
+.followButton{
+  border: 1px solid #FFFFFF;
+  border-radius: 8px;
+  padding: 8px 28px;
+  background: rgba(black, 0.2);
+  color: black;
+  transition: .4s;
+  cursor: pointer;
+  &:active, &:hover{
+    background: rgba(black, 0.6);
+    color: white;
+  }
+}
