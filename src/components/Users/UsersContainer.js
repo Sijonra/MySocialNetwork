@@ -1,12 +1,15 @@
 import React from "react";
 import Users from "./Users";
 import {connect} from "react-redux";
+import {incrementPageAC} from "../../redux/usersPageReducer";
 
 class UsersContainer extends React.Component {
     render(){
-        //alert(1);
         return(
-            <Users />
+            <Users
+                page={this.props.page}
+                incrementPage={this.props.incrementPage}
+            />
         )
     }
 }
@@ -19,4 +22,12 @@ let mapStateToProps = (state) =>{
     )
 }
 
-export default connect(mapStateToProps)(UsersContainer);
+let mapDispatchToProps = (dispatch) =>{
+    return{
+        incrementPage: ()=> {
+            dispatch(incrementPageAC());
+        },
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);

@@ -1,6 +1,13 @@
-const Users = () =>{
+const Users = (props) =>{
     return(
-        <>Users</>
+        <>
+            {props.page}
+            <button onClick={ ()=>{
+                props.incrementPage();
+            } }>
+                Increment
+            </button>
+        </>
     )
 }
 export default Users;
