@@ -1,4 +1,5 @@
 import style from './Users.module.scss'
+import Loader from "../common/Loader";
 
 const Users = (props) =>{
 
@@ -9,6 +10,9 @@ const Users = (props) =>{
 
     return(
         <div className={style.usersPage}>
+            <div>
+                {props.preLoader ? <Loader/> : null}
+            </div>
             <div className={style.pagination}>
                 {
                     pagesPagination.map(element=>{
@@ -27,18 +31,20 @@ const Users = (props) =>{
             <div className={style.users}>
                 {props.users.map(user=>{
                     return(
-                        <div key={user.id} className={style.user}>
-                            <img src={user.photos.small ? user.photos.small : 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png'} alt="" className={style.userAvatar}/>
-                            <div className={style.userInfo}>
-                                <p className={style.userName}>{user.name}</p>
-                                <p className={style.userId}>@{user.id}</p>
-                                <p className={style.userStatus}>
-                                    {user.status ? user.status : 'Пользователь не добавил статус'}
-                                </p>
+                        <div key={user.id}>
+                            <div key={user.id} className={ props.preLoader ?  style.loading : style.user}>
+                                <img src={user.photos.small ? user.photos.small : 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png'} alt="" className={style.userAvatar}/>
+                                <div className={style.userInfo}>
+                                    <p className={style.userName}>{user.name}</p>
+                                    <p className={style.userId}>@{user.id}</p>
+                                    <p className={style.userStatus}>
+                                        {user.status ? user.status : 'Пользователь не добавил статус'}
+                                    </p>
+                                </div>
+                                <button className={style.followButton}>
+                                    follow
+                                </button>
                             </div>
-                            <button className={style.followButton}>
-                                follow
-                            </button>
                         </div>
                     )
                 })}

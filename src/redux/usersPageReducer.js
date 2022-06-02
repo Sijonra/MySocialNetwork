@@ -1,12 +1,14 @@
 const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT"
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE"
 const SET_USERS = "SET_USERS"
+const TOGGLE_PRE_LOADER = "TOGGLE_PRE_LOADER"
 
 let initialState = {
     totalUsersCount: 21,
     usersOnPage: 5,
     currentPage: 1,
     users: [],
+    preLoader: false,
 }
 
 const usersPageReducer = (state = initialState, action) =>{
@@ -26,6 +28,12 @@ const usersPageReducer = (state = initialState, action) =>{
             tmpState.users = action.users
             return tmpState
         }
+        case TOGGLE_PRE_LOADER:{
+            let tmpState = {...state}
+            tmpState.preLoader ? tmpState.preLoader = false : tmpState.preLoader = true
+            console.log(tmpState.preLoader)
+            return tmpState
+        }
         default:{
             return state
         }
@@ -35,5 +43,6 @@ const usersPageReducer = (state = initialState, action) =>{
 export let setTotalUsersCountAC = (totalUsersCount) => {return{type: SET_TOTAL_USERS_COUNT, totalUsersCount: totalUsersCount}}
 export let setCurrentPageAC = (pageNumber) => {return{type: SET_CURRENT_PAGE, pageNumber: pageNumber}}
 export let setUsersAC = (users) => {return{type: SET_USERS, users: users}}
+export let togglePreLoaderAC = () => {return{type: TOGGLE_PRE_LOADER}}
 
 export default usersPageReducer;
