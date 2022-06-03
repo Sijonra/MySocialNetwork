@@ -1,6 +1,7 @@
 import style from './Profile.module.scss'
 import avatar from '../../assets/ProfileAvatar.png'
 import ProfileAvatar from "../common/ProfileAvatar";
+import PostsContainer from "./Posts/PostsContainer";
 
 const Profile = () =>{
     return(
@@ -51,6 +52,9 @@ const Profile = () =>{
                         </a>
                     </div>
                 </div>
+            </div>
+            <div className={style.posts}>
+                <PostsContainer/>
             </div>
         </div>
     )
