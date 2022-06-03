@@ -17,7 +17,7 @@ const Post = props =>{
                     </p>
                 </div>
                 <p className={style.text}>
-                    Всем привет, меня зовут Антон Кострюков и я очень крутой чувк!!!
+                    {props.text}
                 </p>
                 <div className={style.postReacts}>
                     <div className={style.likes}>
@@ -31,7 +31,7 @@ const Post = props =>{
                                 </clipPath>
                             </defs>
                         </svg>
-                        <span>12</span>
+                        <span>{props.likes}</span>
                     </div>
                 </div>
             </div>

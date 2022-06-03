@@ -13,11 +13,13 @@ function App() {
     <>
         <Header />
         <main className="section-main">
-            <div className='search-bar'>
-                <SearchBar />
-            </div>
-            <div className='nav-bar'>
-                <NavBar />
+            <div className="side-bar">
+                <div className='search-bar'>
+                    <SearchBar />
+                </div>
+                <div className='nav-bar'>
+                    <NavBar />
+                </div>
             </div>
             <section className='section'>
                 <Routes>

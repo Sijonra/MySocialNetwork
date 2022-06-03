@@ -2,15 +2,13 @@
     padding: 44px 0 0 0;
     max-width: 1400px;
     margin: 0 auto;
-    display: grid;
-    column-gap: 44px;
-    row-gap: 44px;
-    grid-template-columns: 1fr 4fr;
+    display: flex;
 }
-
+.side-bar{
+    margin-right: 52px;
+}
 .search-bar{
-    grid-column-start: 1;
-    grid-column-end: 2;
+    margin-bottom: 40px;
 }
 
 .nav-bar{
@@ -19,8 +17,5 @@
 }
 
 .section{
-    grid-row-start: 1;
-    grid-row-end: 3;
-    grid-column-start: 2;
-    grid-column-end: 3;
+    width: 100%;
 }
