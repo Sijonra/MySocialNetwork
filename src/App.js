@@ -4,9 +4,9 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import Header from "./components/Header/Header";
 import {Route, Routes} from "react-router-dom";
 import Map from "./components/Map/Map";
-import Profile from "./components/Profile/Profile";
 import Messages from "./components/Messenger/Messages";
 import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
             </div>
             <section className='section'>
                 <Routes>
-                    <Route path='/profile' element={<Profile />} />
+                    <Route path='/profile' element={<ProfileContainer />} />
                     <Route path='/messages' element={<Messages />} />
                     <Route path='/users' element={<UsersContainer />} />
                     <Route path='/map' element={<Map/>} />

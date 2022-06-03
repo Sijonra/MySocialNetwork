@@ -1,5 +1,6 @@
 import style from './Header.module.scss'
 import Avatar from "../common/Avatar";
+import avatar from '../../assets/avatar.jpg'
 
 const Header = () =>{
     return(
@@ -12,7 +13,7 @@ const Header = () =>{
                     <span>My Social Network</span>
                 </div>
                 <div className={style.profileInfo}>
-                    <Avatar avatarLink='http://fuzz-music.com/wp-content/uploads/2020/01/saundtrek-strah-i-nenavist-v-las-vegase-pereizdan-na-vinile-k.jpg'/>
+                    <Avatar avatarLink={avatar}/>
                     <div className={style.profileName}>
                         <p>Илья</p>
                         <p>@sijonra</p>

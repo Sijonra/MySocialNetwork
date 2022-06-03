@@ -31,7 +31,6 @@ const usersPageReducer = (state = initialState, action) =>{
         case TOGGLE_PRE_LOADER:{
             let tmpState = {...state}
             tmpState.preLoader ? tmpState.preLoader = false : tmpState.preLoader = true
-            console.log(tmpState.preLoader)
             return tmpState
         }
         default:{
