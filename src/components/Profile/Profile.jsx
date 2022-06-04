@@ -14,7 +14,7 @@ const Profile = (props) =>{
         return(
             <div>
                 <div className={style.banner}>
-                    <ProfileAvatar avatarLink={props.userProfileInfo.photos.large} />
+                    <ProfileAvatar avatarLink={props.userProfileInfo.photos.large ? props.userProfileInfo.photos.large : 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png'} />
                     <div className={style.profileInfo}>
                         <p className={style.name}>{props.userProfileInfo.fullName}</p>
                         <div className={style.statusW}>
