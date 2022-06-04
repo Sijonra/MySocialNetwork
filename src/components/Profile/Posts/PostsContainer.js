@@ -22,8 +22,8 @@ let mapStateToProps = (state) =>{
 let mapDispatchToProps = (dispatch) =>{
     return(
         {
-            handleAddPost: (text, likes)=>{
-                dispatch(addPostAC(text, likes))
+            handleAddPost: (id, text, likes)=>{
+                dispatch(addPostAC(id, text, likes))
             }
         }
     )

@@ -20,3 +20,11 @@ export const userApi = {
         })
     }
 }
+
+export const profileApi = {
+    getUserProfile: (userId)=>{
+        return instance.get('/profile/' + userId).then(response =>{
+            return response.data;
+        })
+    }
+}

@@ -23,7 +23,7 @@ function App() {
             </div>
             <section className='section'>
                 <Routes>
-                    <Route path='/profile' element={<ProfileContainer />} />
+                    <Route path='/profile/:userId' element={<ProfileContainer />} />
                     <Route path='/messages' element={<Messages />} />
                     <Route path='/users' element={<UsersContainer />} />
                     <Route path='/map' element={<Map/>} />

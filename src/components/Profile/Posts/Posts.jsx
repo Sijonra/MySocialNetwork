@@ -17,8 +17,8 @@ const Posts = props =>{
                 <button
                     className={style.sendPost}
                     onClick={()=>{
-                        console.log(newPostElement.current.value)
-                        props.handleAddPost(newPostElement.current.value, 12);
+                        props.handleAddPost(props.posts.length, newPostElement.current.value, 12);
+                        newPostElement.current.value = '';
                     }}
                 >
                     Отправить

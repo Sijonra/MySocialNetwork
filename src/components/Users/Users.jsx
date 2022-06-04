@@ -1,5 +1,6 @@
 import style from './Users.module.scss'
 import Loader from "../common/Loader";
+import {NavLink} from "react-router-dom";
 
 const Users = (props) =>{
 
@@ -33,7 +34,9 @@ const Users = (props) =>{
                     return(
                         <div key={user.id}>
                             <div key={user.id} className={ props.preLoader ?  style.loading : style.user}>
-                                <img src={user.photos.small ? user.photos.small : 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png'} alt="" className={style.userAvatar}/>
+                                <NavLink to={'/profile/' + user.id}>
+                                    <img src={user.photos.small ? user.photos.small : 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png'} alt="" className={style.userAvatar}/>
+                                </NavLink>
                                 <div className={style.userInfo}>
                                     <p className={style.userName}>{user.name}</p>
                                     <p className={style.userId}>@{user.id}</p>
