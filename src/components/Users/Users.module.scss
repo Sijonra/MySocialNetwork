@@ -59,9 +59,10 @@
   text-align: center;
 }
 .followButton{
+  width: 72px;
   border: 1px solid #FFFFFF;
   border-radius: 8px;
-  padding: 8px 28px;
+  padding: 8px 0;
   background: rgba(black, 0.2);
   color: black;
   transition: .4s;
@@ -70,6 +71,9 @@
     background: rgba(black, 0.6);
     color: white;
   }
+}
+.disabled{
+  background: black;
 }
 .loading{
   display: none;

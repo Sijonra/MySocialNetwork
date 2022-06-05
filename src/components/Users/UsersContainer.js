@@ -1,7 +1,13 @@
 import React from "react";
 import Users from "./Users";
 import {connect} from "react-redux";
-import {setCurrentPageAC, setTotalUsersCountAC, setUsersAC, togglePreLoaderAC} from "../../redux/usersPageReducer";
+import {
+    setCurrentPageAC,
+    setTotalUsersCountAC,
+    setUsersAC,
+    toggleFollowButtonAC, toggleFollowFetchingAC,
+    togglePreLoaderAC
+} from "../../redux/usersPageReducer";
 import {userApi} from "../../api/api";
 
 class UsersContainer extends React.Component {
@@ -23,6 +29,10 @@ class UsersContainer extends React.Component {
         })
     }
 
+    toggleFollowButton = (userId) =>{
+        this.props.toggleFollowButton(userId);
+    }
+
     setCurrentPage = (pageNumber) =>{
         this.props.setCurrentPage(pageNumber);
         // axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.usersOnPage}`).then(response=>{
@@ -38,6 +48,18 @@ class UsersContainer extends React.Component {
         })
     }
 
+    followUser = (userId) =>{
+        userApi.followUser(userId).then(response=>{
+            this.toggleFollowButton(userId);
+        })
+    }
+
+    unFollowUser = (userId) =>{
+        userApi.unFollowUser(userId).then(response=>{
+            this.toggleFollowButton(userId);
+        })
+    }
+
     render(){
         let totalUsersPages = Math.ceil(this.props.totalUsersCount / this.props.usersOnPage);
         return(
@@ -45,6 +67,9 @@ class UsersContainer extends React.Component {
                 {...this.props}
                 totalUsersPages={totalUsersPages}
                 setCurrentPage={this.setCurrentPage}
+                toggleFollowButton={this.toggleFollowButton}
+                followUser={this.followUser}
+                unFollowUser={this.unFollowUser}
             />
         )
     }
@@ -75,6 +100,12 @@ let mapDispatchToProps = (dispatch) =>{
         },
         togglePreLoader: () =>{
             dispatch(togglePreLoaderAC())
+        },
+        toggleFollowButton: (userId) =>{
+            dispatch(toggleFollowButtonAC(userId))
+        },
+        toggleFollowFetching: (userId) =>{
+            dispatch(toggleFollowFetchingAC(userId))
         },
     }
 }

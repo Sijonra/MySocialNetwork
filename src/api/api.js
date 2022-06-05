@@ -18,7 +18,17 @@ export const userApi = {
         return instance.get(`/users?page=${currentPage}&count=${usersOnPage}`).then(response=>{
             return response.data;
         })
-    }
+    },
+    followUser: (userId) =>{
+        return instance.post('/follow/' + userId).then(response=>{
+            return response;
+        })
+    },
+    unFollowUser: (userId) =>{
+        return instance.delete('/follow/' + userId).then(response=>{
+            return response;
+        })
+    },
 }
 
 export const profileApi = {

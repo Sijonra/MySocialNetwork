@@ -44,9 +44,24 @@ const Users = (props) =>{
                                         {user.status ? user.status : 'Пользователь не добавил статус'}
                                     </p>
                                 </div>
-                                <button className={style.followButton}>
-                                    follow
-                                </button>
+                                {
+                                    user.followed ?
+                                        <button
+                                            className={style.followButton}
+                                            onClick={()=>{
+                                                props.unFollowUser(user.id);
+                                            }}>
+                                            Unfollow
+                                        </button>
+                                        :
+                                        <button
+                                            className={ style.followButton}
+                                            onClick={()=>{
+                                                props.followUser(user.id);
+                                            }}>
+                                            follow
+                                        </button>
+                                }
                             </div>
                         </div>
                     )
