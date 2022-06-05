@@ -4,6 +4,7 @@ const SET_USERS = "SET_USERS"
 const TOGGLE_PRE_LOADER = "TOGGLE_PRE_LOADER"
 const TOGGLE_FOLLOW_BUTTON = "TOGGLE_FOLLOW_BUTTON"
 const TOGGLE_FOLLOW_FETCHING = "TOGGLE_FOLLOW_FETCHING"
+const UN_TOGGLE_FOLLOW_FETCHING = "UN_TOGGLE_FOLLOW_FETCHING"
 
 let initialState = {
     totalUsersCount: 21,
@@ -44,6 +45,16 @@ const usersPageReducer = (state = initialState, action) =>{
             })
             return tmpState;
         }
+        case TOGGLE_FOLLOW_FETCHING: {
+            tmpState.followFetching = [...state.followFetching, action.userId]
+            return tmpState;
+        }
+        case UN_TOGGLE_FOLLOW_FETCHING:{
+            console.log(tmpState.followFetching)
+            tmpState.followFetching = tmpState.followFetching.filter(id => id !== action.userId);
+            console.log(tmpState.followFetching)
+            return tmpState;
+        }
         default:{
             return state
         }
@@ -56,5 +67,6 @@ export let setUsersAC = (users) => {return{type: SET_USERS, users: users}}
 export let togglePreLoaderAC = () => {return{type: TOGGLE_PRE_LOADER}}
 export let toggleFollowButtonAC = (userId) => {return{type: TOGGLE_FOLLOW_BUTTON, userId: userId}}
 export let toggleFollowFetchingAC = (userId) => {return{type: TOGGLE_FOLLOW_FETCHING, userId: userId}}
+export let unToggleFollowFetchingAC = (userId) => {return{type: UN_TOGGLE_FOLLOW_FETCHING, userId: userId}}
 
 export default usersPageReducer;

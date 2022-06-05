@@ -73,7 +73,12 @@
   }
 }
 .disabled{
-  background: black;
+  background: #ececec;
+  cursor: auto;
+  &:active, &:hover{
+    background: #ececec;
+    color: #ececec;
+  }
 }
 .loading{
   display: none;

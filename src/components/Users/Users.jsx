@@ -47,7 +47,8 @@ const Users = (props) =>{
                                 {
                                     user.followed ?
                                         <button
-                                            className={style.followButton}
+                                            disabled={props.followFetching.some(id => id === user.id)}
+                                            className={props.followFetching.some(id => id === user.id) ? style.followButton + " " + style.disabled : style.followButton}
                                             onClick={()=>{
                                                 props.unFollowUser(user.id);
                                             }}>
@@ -55,7 +56,8 @@ const Users = (props) =>{
                                         </button>
                                         :
                                         <button
-                                            className={ style.followButton}
+                                            disabled={props.followFetching.some(id => id === user.id)}
+                                            className={props.followFetching.some(id => id === user.id) ? style.followButton + " " + style.disabled : style.followButton}
                                             onClick={()=>{
                                                 props.followUser(user.id);
                                             }}>

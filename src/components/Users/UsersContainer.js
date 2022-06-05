@@ -6,7 +6,7 @@ import {
     setTotalUsersCountAC,
     setUsersAC,
     toggleFollowButtonAC, toggleFollowFetchingAC,
-    togglePreLoaderAC
+    togglePreLoaderAC, unToggleFollowFetchingAC
 } from "../../redux/usersPageReducer";
 import {userApi} from "../../api/api";
 
@@ -49,16 +49,22 @@ class UsersContainer extends React.Component {
     }
 
     followUser = (userId) =>{
+        this.props.toggleFollowFetching(userId);
         userApi.followUser(userId).then(response=>{
-            this.toggleFollowButton(userId);
+            this.toggleFollowButton(userId)
+            this.props.unToggleFollowFetching(userId)
         })
     }
 
     unFollowUser = (userId) =>{
+        this.props.toggleFollowFetching(userId);
         userApi.unFollowUser(userId).then(response=>{
-            this.toggleFollowButton(userId);
+            this.toggleFollowButton(userId)
+            this.props.unToggleFollowFetching(userId)
         })
     }
+
+
 
     render(){
         let totalUsersPages = Math.ceil(this.props.totalUsersCount / this.props.usersOnPage);
@@ -83,6 +89,7 @@ let mapStateToProps = (state) =>{
             currentPage: state.usersPage.currentPage,
             users: state.usersPage.users,
             preLoader: state.usersPage.preLoader,
+            followFetching: state.usersPage.followFetching,
         }
     )
 }
@@ -106,6 +113,9 @@ let mapDispatchToProps = (dispatch) =>{
         },
         toggleFollowFetching: (userId) =>{
             dispatch(toggleFollowFetchingAC(userId))
+        },
+        unToggleFollowFetching: (userId) =>{
+            dispatch(unToggleFollowFetchingAC(userId))
         },
     }
 }
