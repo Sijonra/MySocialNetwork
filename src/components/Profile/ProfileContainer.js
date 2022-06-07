@@ -1,7 +1,6 @@
 import React from 'react'
 import Profile from "./Profile";
-import {profileApi} from "../../api/api";
-import {setUserInfoAC} from "../../redux/profilePageReducer";
+import {getUserProfile,} from "../../redux/profilePageReducer";
 import {connect} from "react-redux";
 import {useLocation, useNavigate, useParams} from "react-router";
 
@@ -9,9 +8,7 @@ class ProfileContainer extends React.Component{
     //23717
     componentDidMount() {
         let userId = this.props.router.params.userId;
-        profileApi.getUserProfile(userId).then(data=>{
-            this.props.setUserInfo(data);
-        })
+        this.props.getUserProfile(userId);
     }
 
     render() {
@@ -29,8 +26,8 @@ let mapStateToProps = (state) =>{
 
 let mapDispatchToProps = (dispatch) =>{
     return{
-        setUserInfo: (data)=>{
-            dispatch(setUserInfoAC(data))
+        getUserProfile: (userId)=>{
+            dispatch(getUserProfile(userId));
         }
     }
 }

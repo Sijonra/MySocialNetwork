@@ -1,3 +1,5 @@
+import {profileApi} from "../api/api";
+
 const ADD_POST = 'ADD_POST'
 const SET_USER_INFO = 'SET_USER_INFO'
 
@@ -34,5 +36,13 @@ const profilePageReducer = (state = initialState, action) =>{
 
 export let setUserInfoAC = (data) => ({type: SET_USER_INFO, data: data})
 export let addPostAC = (id, text, likes) => {return{type: ADD_POST, id: id, text: text, likes: likes,}}
+
+export const getUserProfile = (userId) =>{
+    return (dispatch) => {
+        profileApi.getUserProfile(userId).then(data => {
+            dispatch(setUserInfoAC(data));
+        })
+    }
+}
 
 export default profilePageReducer;
