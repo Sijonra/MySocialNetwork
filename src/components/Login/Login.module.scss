@@ -1,0 +1,51 @@
+.loginForm{
+  width: 400px;
+  height: 40vh;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 60px;
+}
+.login{
+  width: 50%;
+  margin-bottom: 52px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  color: #8F8F8F;
+  background: #F6F6F6;
+  border: 1px solid rgba(72, 72, 72, 0.5);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 10px;
+}
+.password{
+  width: 50%;
+  margin-bottom: 52px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  color: #8F8F8F;
+  background: #F6F6F6;
+  border: 1px solid rgba(72, 72, 72, 0.5);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 10px;
+}
+.button{
+  width: 50%;
+  margin-bottom: 52px;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+  color: #FFFFFF;
+  background: #FD6E35;
+  border: 1px solid rgba(72, 72, 72, 0.5);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  padding: 10px 0;
+  transition: .4s;
+  cursor: pointer;
+  &:hover, &:active, &:focus{
+    background: #be5328;
+  }
+}
