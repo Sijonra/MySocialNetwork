@@ -5,6 +5,7 @@ import PostsContainer from "./Posts/PostsContainer";
 import Loader from "../common/Loader";
 
 const Profile = (props) =>{
+
     if(props.userProfileInfo === null || props.userProfileInfo === undefined){
         return (
             <Loader />

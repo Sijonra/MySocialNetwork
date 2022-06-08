@@ -2,7 +2,7 @@ import React from 'react'
 import Profile from "./Profile";
 import {getUserProfile,} from "../../redux/profilePageReducer";
 import {connect} from "react-redux";
-import {useLocation, useNavigate, useParams} from "react-router";
+import {Navigate, useLocation, useNavigate, useParams} from "react-router";
 
 class ProfileContainer extends React.Component{
     //23717
@@ -10,17 +10,20 @@ class ProfileContainer extends React.Component{
         let userId = this.props.router.params.userId;
         this.props.getUserProfile(userId);
     }
-
+    
     render() {
+        if (!this.props.isLoggedIn) return <Navigate to='/login' />
         return(
-            <Profile userProfileInfo={this.props.userProfileInfo} />
+            <Profile userProfileInfo={this.props.userProfileInfo} {...this.props} />
         )
     }
+
 }
 
 let mapStateToProps = (state) =>{
     return{
-        userProfileInfo: state.profilePage.userInfo
+        userProfileInfo: state.profilePage.userInfo,
+        isLoggedIn: state.auth.isLoggedIn,
     }
 }
 

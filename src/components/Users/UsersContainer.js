@@ -5,6 +5,7 @@ import {
     followUser,
     getUsers, setCurrentPage, unFollowUser,
 } from "../../redux/usersPageReducer";
+import {Navigate} from "react-router";
 
 class UsersContainer extends React.Component {
 
@@ -17,6 +18,7 @@ class UsersContainer extends React.Component {
     }
 
     render(){
+        if(!this.props.isLoggedIn) return <Navigate to='/login' />
         let totalUsersPages = Math.ceil(this.props.totalUsersCount / this.props.usersOnPage);
         return(
             <Users
@@ -40,6 +42,7 @@ let mapStateToProps = (state) =>{
             users: state.usersPage.users,
             preLoader: state.usersPage.preLoader,
             followFetching: state.usersPage.followFetching,
+            isLoggedIn: state.auth.isLoggedIn,
         }
     )
 }
