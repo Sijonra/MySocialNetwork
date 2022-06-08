@@ -42,7 +42,7 @@ export const profileApi = {
 export const authApi = {
     authUser: ()=>{
         return instance.get('auth/me').then(respones=>{
-            return respones.data.data;
+            return respones.data;
         })
     }
 }
