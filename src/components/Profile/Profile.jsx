@@ -3,6 +3,7 @@ import style from './Profile.module.scss'
 import ProfileAvatar from "../common/ProfileAvatar";
 import PostsContainer from "./Posts/PostsContainer";
 import Loader from "../common/Loader";
+import ProfileStatus from "./ProfileStatus";
 
 const Profile = (props) =>{
 
@@ -20,7 +21,7 @@ const Profile = (props) =>{
                         <p className={style.name}>{props.userProfileInfo.fullName}</p>
                         <div className={style.statusW}>
                             <p className={style.label}>Обо мне:</p>
-                            <p className={style.status}>{props.userProfileInfo.aboutMe}</p>
+                            <ProfileStatus status={props.userProfileInfo.aboutMe} />
                         </div>
                         <div className={style.jobW}>
                             <p className={style.label}>Работа:</p>
