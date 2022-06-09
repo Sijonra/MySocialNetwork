@@ -5,7 +5,7 @@ import {
     followUser,
     getUsers, setCurrentPage, unFollowUser,
 } from "../../redux/usersPageReducer";
-import {Navigate} from "react-router";
+import withAuthRedirect from "../../hoc/withAuthRedirect";
 
 class UsersContainer extends React.Component {
 
@@ -18,7 +18,6 @@ class UsersContainer extends React.Component {
     }
 
     render(){
-        if(!this.props.isLoggedIn) return <Navigate to='/login' />
         let totalUsersPages = Math.ceil(this.props.totalUsersCount / this.props.usersOnPage);
         return(
             <Users
@@ -63,5 +62,6 @@ let mapDispatchToProps = (dispatch) =>{
         }
     }
 }
+let authRedirect = withAuthRedirect(UsersContainer);
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(authRedirect);
