@@ -2,6 +2,7 @@ import {profileApi} from "../api/api";
 
 const ADD_POST = 'ADD_POST'
 const SET_USER_INFO = 'SET_USER_INFO'
+const ADD_USER_STATUS = 'ADD_USER_STATUS'
 
 let initialState = {
     posts: [
@@ -9,6 +10,7 @@ let initialState = {
         {id: 1, text: 'Всем привет, меня зовут Антон Кострюков и я очень крутой чувк!!!', likes: 12,},
     ],
     userInfo: null,
+    userStatus: null,
 }
 
 const profilePageReducer = (state = initialState, action) =>{
@@ -28,6 +30,10 @@ const profilePageReducer = (state = initialState, action) =>{
             tmpState.userInfo = action.data
             return tmpState;
         }
+        case ADD_USER_STATUS: {
+            tmpState.userStatus = action.userStatus
+            return tmpState;
+        }
         default: {
             return state;
         }
@@ -36,6 +42,7 @@ const profilePageReducer = (state = initialState, action) =>{
 
 export let setUserInfoAC = (data) => ({type: SET_USER_INFO, data: data})
 export let addPostAC = (id, text, likes) => {return{type: ADD_POST, id: id, text: text, likes: likes,}}
+export let addUserStatus = (userStatus) => {return{type: ADD_USER_STATUS, userStatus: userStatus}}
 
 export const getUserProfile = (userId) =>{
     return (dispatch) => {
@@ -44,5 +51,14 @@ export const getUserProfile = (userId) =>{
         })
     }
 }
+
+export const getUserStatus = (userId) =>{
+    return (dispatch) =>{
+        profileApi.getUserStatus(userId).then(status=>{
+            dispatch(addUserStatus(status))
+        })
+    }
+}
+
 
 export default profilePageReducer;

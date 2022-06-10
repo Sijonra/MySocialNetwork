@@ -52,9 +52,7 @@ const usersPageReducer = (state = initialState, action) =>{
             return tmpState;
         }
         case UN_TOGGLE_FOLLOW_FETCHING:{
-            console.log(tmpState.followFetching)
             tmpState.followFetching = tmpState.followFetching.filter(id => id !== action.userId);
-            console.log(tmpState.followFetching)
             return tmpState;
         }
         default:{

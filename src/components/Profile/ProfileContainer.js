@@ -1,6 +1,6 @@
 import React from 'react'
 import Profile from "./Profile";
-import {getUserProfile,} from "../../redux/profilePageReducer";
+import {getUserProfile, getUserStatus,} from "../../redux/profilePageReducer";
 import {connect} from "react-redux";
 import {useLocation, useNavigate, useParams} from "react-router";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
@@ -11,6 +11,7 @@ class ProfileContainer extends React.Component{
     componentDidMount() {
         let userId = this.props.router.params.userId;
         this.props.getUserProfile(userId);
+        this.props.getUserStatus(userId);
     }
     
     render() {
@@ -26,6 +27,7 @@ let mapStateToProps = (state) =>{
         userProfileInfo: state.profilePage.userInfo,
         isLoggedIn: state.auth.isLoggedIn,
         userId: state.auth.id,
+        userStatus: state.profilePage.userStatus,
     }
 }
 
@@ -33,6 +35,9 @@ let mapDispatchToProps = (dispatch) =>{
     return{
         getUserProfile: (userId)=>{
             dispatch(getUserProfile(userId));
+        },
+        getUserStatus: (userId)=>{
+            dispatch(getUserStatus(userId))
         }
     }
 }
