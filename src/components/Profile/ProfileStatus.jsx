@@ -3,11 +3,19 @@ import style from './Profile.module.scss'
 
 class ProfileStatus extends React.Component{
 
+    statusRef = React.createRef()
+
     state = {editMode: false,}
 
     activateEditMode = () =>{this.setState({editMode: true})}
 
-    deactivateEditeMode = () =>{this.setState({editMode: false})}
+    updateStatus = () =>{
+        this.props.updateUserStatus(this.statusRef.current.value)
+    }
+
+    deactivateEditeMode = () =>{
+        this.setState({editMode: false})
+    }
 
     render() {
         return(
@@ -16,11 +24,12 @@ class ProfileStatus extends React.Component{
                     this.state.editMode
                         ?
                         <>
-                            <input type="text" className={style.statusInput} onBlur={this.deactivateEditeMode} autoFocus={true}/>
+                            <input onBlur={this.deactivateEditeMode} ref={this.statusRef} type="text" className={style.statusInput}  autoFocus={true}/>
+                            <button onClick={this.updateStatus} >Сохранить</button>
                         </>
                         :
                         <>
-                            <p onClick={this.activateEditMode} className={!this.props.status ? style.noStatus : style.status}>{!this.props.status ? 'введите ваш статус' : this.props.status}</p>
+                            <p onDoubleClick={this.activateEditMode} className={!this.props.status ? style.noStatus : style.status}>{!this.props.status ? 'введите ваш статус' : this.props.status}</p>
                         </>
                 }
             </>

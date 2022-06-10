@@ -60,5 +60,19 @@ export const getUserStatus = (userId) =>{
     }
 }
 
+export const updateUserStatus = (status) =>{
+    return (dispatch) =>{
+        profileApi.updateStatus(status).then(response=>{
+            if(response.data.resultCode === 0){
+                dispatch(addUserStatus(status));
+            }
+            else{
+                console.log(response.data);
+                alert('некорректный статус')
+            }
+        })
+    }
+}
+
 
 export default profilePageReducer;

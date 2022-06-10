@@ -41,12 +41,17 @@ export const profileApi = {
       return instance.get('/profile/status/' + userId).then(response=>{
           return response.data;
       })
+    },
+    updateStatus: (status) =>{
+        return instance.put('/profile/status', {status: status}, {withCredentials: true}).then(response=>{
+            return response;
+        })
     }
 }
 
 export const authApi = {
     authUser: ()=>{
-        return instance.get('auth/me').then(respones=>{
+        return instance.get('auth/me',).then(respones=>{
             return respones.data;
         })
     }

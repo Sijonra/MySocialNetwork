@@ -1,6 +1,6 @@
 import React from 'react'
 import Profile from "./Profile";
-import {getUserProfile, getUserStatus,} from "../../redux/profilePageReducer";
+import {getUserProfile, getUserStatus, updateUserStatus,} from "../../redux/profilePageReducer";
 import {connect} from "react-redux";
 import {useLocation, useNavigate, useParams} from "react-router";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
@@ -8,6 +8,7 @@ import {compose} from "redux";
 
 class ProfileContainer extends React.Component{
     //23717
+    //139
     componentDidMount() {
         let userId = this.props.router.params.userId;
         this.props.getUserProfile(userId);
@@ -16,7 +17,7 @@ class ProfileContainer extends React.Component{
     
     render() {
         return(
-            <Profile userProfileInfo={this.props.userProfileInfo} {...this.props} />
+            <Profile updateUserStatus={this.props.updateUserStatus} userProfileInfo={this.props.userProfileInfo} {...this.props} />
         )
     }
 
@@ -38,7 +39,10 @@ let mapDispatchToProps = (dispatch) =>{
         },
         getUserStatus: (userId)=>{
             dispatch(getUserStatus(userId))
-        }
+        },
+        updateUserStatus: (status)=>{
+            dispatch(updateUserStatus(status))
+        },
     }
 }
 
