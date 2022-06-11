@@ -50,9 +50,14 @@ export const profileApi = {
 }
 
 export const authApi = {
-    authUser: ()=>{
+    authUser: () =>{
         return instance.get('auth/me',).then(respones=>{
             return respones.data;
         })
-    }
+    },
+    logIn: (email, password, rememberMe) =>{
+        return instance.post('auth/login', {email: email, password: password, rememberMe: rememberMe, captcha: false}).then(response=>{
+            return(response.data);
+        })
+    },
 }

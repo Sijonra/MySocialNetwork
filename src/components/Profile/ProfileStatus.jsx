@@ -10,11 +10,13 @@ class ProfileStatus extends React.Component{
     activateEditMode = () =>{this.setState({editMode: true})}
 
     updateStatus = () =>{
+        this.setState({editMode: false})
         this.props.updateUserStatus(this.statusRef.current.value)
     }
 
     deactivateEditeMode = () =>{
         this.setState({editMode: false})
+        this.props.updateUserStatus(this.statusRef.current.value)
     }
 
     render() {
@@ -25,7 +27,7 @@ class ProfileStatus extends React.Component{
                         ?
                         <>
                             <input onBlur={this.deactivateEditeMode} ref={this.statusRef} type="text" className={style.statusInput}  autoFocus={true}/>
-                            <button onClick={this.updateStatus} >Сохранить</button>
+                            <button onClick={this.updateStatus}>Сохранить</button>
                         </>
                         :
                         <>

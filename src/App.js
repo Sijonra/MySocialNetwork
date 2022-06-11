@@ -7,7 +7,7 @@ import Messages from "./components/Messenger/Messages";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import Login from "./components/Login/Login";
+import LoginContainer from "./components/Login/LoginContainer";
 
 function App() {
   return (
@@ -28,7 +28,7 @@ function App() {
                     <Route path='/messages' element={<Messages />} />
                     <Route path='/users' element={<UsersContainer />} />
                     <Route path='/map' element={<Map/>} />
-                    <Route path='/login' element={<Login />} />
+                    <Route path='/login' element={<LoginContainer />} />
                 </Routes>
             </section>
         </main>
