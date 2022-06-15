@@ -5,11 +5,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 60px;
 }
 .login{
   width: 50%;
-  margin-bottom: 52px;
+  margin-top: 52px;
   font-weight: 400;
   font-size: 14px;
   line-height: 14px;
@@ -22,7 +21,7 @@
 }
 .button, .password{
   width: 50%;
-  margin-bottom: 52px;
+  margin-top: 52px;
   font-weight: 400;
   font-size: 24px;
   line-height: 28px;
@@ -33,6 +32,8 @@
   text-align: center;
   padding: 10px 0;
   transition: .4s;
+}
+.button{
   cursor: pointer;
   &:hover, &:active, &:focus{
     background: #be5328;
@@ -49,5 +50,8 @@
 }
 
 .checkBox{
-  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.error{
+  color: red;
 }

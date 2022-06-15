@@ -1,25 +1,80 @@
 import style from './Login.module.scss'
-import { Form, Field } from 'react-final-form'
-
+import {Formik} from "formik";
 
 
 const LoginForm = props =>{
-    const onSubmit = (value) =>{
-        props.logIn(value.login, value.password, value.rememberMe)
-    }
     return(
-        <Form
-            onSubmit={onSubmit}
-            render={({handleSubmit}) =>(
-                <form className={style.loginForm} onSubmit={handleSubmit}>
-                    <Field name={'login'} type="text" component="input" placeholder='почта' className={style.login}/>
-                    <Field name='password' type="text" component="input" placeholder='пароль' className={style.password}/>
-                    <Field name='rememberMe' type="checkbox" component="input" className={style.checkBox}/>
-                    <button type="submit" className={style.button}>Войти</button>
-                </form>
-                )
-            }
-        />
+        <>
+            <Formik
+                initialValues={{email: '', password: '',}}
+                onSubmit={values => {
+                    let checked = false;
+                    if(values.rememberMe) values.rememberMe[0] === 'on' ? checked = true : checked = false;
+                    props.logIn(values.email, values.password, checked);
+                }}
+                validate={values => {
+                    const errors = {};
+                    if (!values.email) {
+                        errors.email = 'Обязательное поле';
+                    }
+                    else if (
+                        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+                    ) {
+                        errors.email = 'Неправильный адрес почты';
+                    }
+                    if(!values.password){
+                        errors.password = 'Обязательное поле';
+                    }
+                    return errors;
+                }}
+            >
+                {
+                    ({
+                         values,
+                         errors,
+                         touched,
+                         handleChange,
+                         handleBlur,
+                         handleSubmit, isSubmitting,
+                     }) =>(
+                        <form className={style.loginForm} onSubmit={handleSubmit}>
+                            <input
+                                name='email'
+                                placeholder='почта'
+                                className={style.login}
+                                value={values.email}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                            />
+                            <p className={style.error}>{errors.email && touched.email && errors.email}</p>
+                            <input
+                                name='password'
+                                placeholder='пароль'
+                                className={style.password}
+                                value={values.password}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                            />
+                            <p className={style.error}>{errors.password && touched.password && errors.password}</p>
+                            <input
+                                name='rememberMe'
+                                type="checkbox"
+                                className={style.checkBox}
+                                onChange={handleChange}
+                            />
+                            <button
+                                type="submit"
+                                className={style.button}
+                                onChange={handleChange}
+                                disabled={isSubmitting}
+                            >
+                                Войти
+                            </button>
+                        </form>
+                    )
+                }
+            </Formik>
+        </>
     )
 }
 
