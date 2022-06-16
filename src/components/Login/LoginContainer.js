@@ -10,6 +10,8 @@ let mapStateToProps = state =>{
     return{
         isLoggedIn: state.auth.isLoggedIn,
         userId: state.auth.id,
+        isFetching: state.auth.isFetching,
+        loginErrorStatus: state.auth.loginErrorStatus,
     }
 }
 

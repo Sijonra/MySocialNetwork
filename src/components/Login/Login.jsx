@@ -1,6 +1,7 @@
 import style from './Login.module.scss'
 import {Formik} from "formik";
 import {Navigate} from "react-router";
+import Loader from "../common/Loader";
 
 
 const LoginForm = props =>{
@@ -38,39 +39,48 @@ const LoginForm = props =>{
                          handleBlur,
                          handleSubmit, isSubmitting,
                      }) =>(
-                        <form className={style.loginForm} onSubmit={handleSubmit}>
-                            <input
-                                name='email'
-                                placeholder='почта'
-                                className={style.login}
-                                value={values.email}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                            />
-                            <p className={style.error}>{errors.email && touched.email && errors.email}</p>
-                            <input
-                                name='password'
-                                placeholder='пароль'
-                                className={style.password}
-                                value={values.password}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                            />
-                            <p className={style.error}>{errors.password && touched.password && errors.password}</p>
-                            <input
-                                name='rememberMe'
-                                type="checkbox"
-                                className={style.checkBox}
-                                onChange={handleChange}
-                            />
-                            <button
-                                type="submit"
-                                className={style.button}
-                                onChange={handleChange}
-                                disabled={isSubmitting}
-                            >
-                                Войти
-                            </button>
+                        <form className={props.loginErrorStatus? style.loginForm + " " + style.inputError : style.loginForm} onSubmit={handleSubmit}>
+                            {
+                                props.isFetching ?
+                                    <Loader />
+                                    :
+                                    <>
+                                        <input
+                                            name='email'
+                                            placeholder='почта'
+                                            className={errors.email ?  style.login + " " + style.inputError : style.login}
+                                            value={values.email}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                        />
+                                        <p className={style.error}>{errors.email && touched.email && errors.email}</p>
+                                        <input
+                                            name='password'
+                                            placeholder='пароль'
+                                            className={errors.password ?  style.password + " " + style.inputError : style.password}
+                                            value={values.password}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                        />
+                                        <p className={style.error}>{errors.password && touched.password && errors.password}</p>
+                                        <input
+                                            name='rememberMe'
+                                            type="checkbox"
+                                            className={style.checkBox}
+                                            onChange={handleChange}
+                                        />
+                                        <label htmlFor="rememberMe">Запомнить меня</label>
+                                        <button
+                                            type="submit"
+                                            className={style.button}
+                                            onChange={handleChange}
+                                            disabled={isSubmitting}
+                                        >
+                                            Войти
+                                        </button>
+                                        <p className={style.loginError}>{props.loginErrorStatus ? props.loginErrorStatus : null}</p>
+                                    </>
+                            }
                         </form>
                     )
                 }
@@ -83,7 +93,7 @@ const Login = props =>{
     if(props.isLoggedIn) return <Navigate to={'/profile/' + props.userId} />
     return(
         <section>
-            <LoginForm logIn={props.logIn}/>
+            <LoginForm logIn={props.logIn} {...props}/>
         </section>
     )
 }
