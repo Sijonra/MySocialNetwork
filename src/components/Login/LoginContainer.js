@@ -3,11 +3,14 @@ import {connect} from "react-redux";
 import {logIn} from "../../redux/authReducer";
 
 const LoginContainer = props =>{
-    return <Login logIn={props.logIn}/>
+    return <Login {...props} logIn={props.logIn}/>
 }
 
 let mapStateToProps = state =>{
-    return{}
+    return{
+        isLoggedIn: state.auth.isLoggedIn,
+        userId: state.auth.id,
+    }
 }
 
 let mapDispatchToProps = dispatch =>{

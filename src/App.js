@@ -1,5 +1,4 @@
 import './App.css';
-import NavBar from "./components/NavBar/NavBar";
 import SearchBar from "./components/SearchBar/SearchBar";
 import {Route, Routes} from "react-router-dom";
 import Map from "./components/Map/Map";
@@ -8,6 +7,7 @@ import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginContainer from "./components/Login/LoginContainer";
+import NavBarContainer from "./components/NavBar/NavBarContainer";
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
                     <SearchBar />
                 </div>
                 <div className='nav-bar'>
-                    <NavBar userId={'23717'}/>
+                    <NavBarContainer />
                 </div>
             </div>
             <section className='section'>

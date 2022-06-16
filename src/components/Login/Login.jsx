@@ -1,5 +1,6 @@
 import style from './Login.module.scss'
 import {Formik} from "formik";
+import {Navigate} from "react-router";
 
 
 const LoginForm = props =>{
@@ -79,6 +80,7 @@ const LoginForm = props =>{
 }
 
 const Login = props =>{
+    if(props.isLoggedIn) return <Navigate to={'/profile/' + props.userId} />
     return(
         <section>
             <LoginForm logIn={props.logIn}/>
