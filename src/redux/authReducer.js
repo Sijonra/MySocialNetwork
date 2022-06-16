@@ -1,5 +1,5 @@
 import {authApi} from "../api/api";
-
+let LOG_OUT = 'LOG_OUT';
 let AUTH_USER = 'AUTH_USER';
 
 let initialState = {
@@ -19,6 +19,13 @@ const authReducer = (state = initialState, action) =>{
             tmpState.login ? tmpState.isLoggedIn = true : tmpState.isLoggedIn = false
             return tmpState;
         }
+        case LOG_OUT:{
+            tmpState.id = null
+            tmpState.login = null
+            tmpState.email = null
+            tmpState.isLoggedIn = false
+            return tmpState;
+        }
         default:{
             return state;
         }
@@ -26,6 +33,7 @@ const authReducer = (state = initialState, action) =>{
 }
 
 export let authUserAC = (id, login, email) => ({type: AUTH_USER, id: id, login: login, email: email})
+export let logOutAC = () => {return{type: LOG_OUT}}
 
 export const getAuthUserData = () =>{
     return (dispatch) =>{
@@ -43,8 +51,19 @@ export const logIn = (email, password, rememberMe) =>{
         authApi.logIn(email, password, rememberMe).then(data=>{
             console.log(data);
             if(data.resultCode === 0) {
-                getAuthUserData();
+                dispatch(getAuthUserData());
             }
+        })
+    }
+}
+
+export const logOut = () =>{
+    return dispatch =>{
+        authApi.logOut().then(data=>{
+            if(data.resultCode === 0){
+                dispatch(logOutAC());
+            }
+            console.log(data);
         })
     }
 }

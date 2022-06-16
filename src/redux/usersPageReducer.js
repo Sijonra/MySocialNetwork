@@ -76,7 +76,7 @@ export const getUsers = (currentPage, usersOnPage) =>{
         })
         userApi.getUsers(currentPage, usersOnPage).then((data)=>{
             dispatch(setUsersAC(data.items));
-            togglePreLoaderAC();
+            dispatch(togglePreLoaderAC());
         })
     }
 }
