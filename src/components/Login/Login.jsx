@@ -74,7 +74,7 @@ const LoginForm = props =>{
                                             type="submit"
                                             className={style.button}
                                             onChange={handleChange}
-                                            disabled={isSubmitting}
+                                            disabled={props.isFetching}
                                         >
                                             Войти
                                         </button>
