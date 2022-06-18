@@ -51,7 +51,7 @@ export let setLoginErrorStatus = (loginErrorStatus) =>{return{type: SET_LOGIN_ER
 
 export const getAuthUserData = () =>{
     return (dispatch) =>{
-        authApi.authUser().then(data=>{
+        return authApi.authUser().then(data=>{
             if(data.resultCode === 0){
                 dispatch(authUserAC(data.data.id, data.data.login, data.data.email))
             }
