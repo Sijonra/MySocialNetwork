@@ -4,7 +4,7 @@ import ProfileAvatar from "../common/ProfileAvatar";
 import PostsContainer from "./Posts/PostsContainer";
 import Loader from "../common/Loader";
 import ProfileAboutMe from "./ProfileAboutMe";
-import ProfileStatus from "./ProfileStatus";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 const Profile = (props) =>{
 
@@ -20,7 +20,7 @@ const Profile = (props) =>{
                     <ProfileAvatar avatarLink={props.userProfileInfo.photos.large ? props.userProfileInfo.photos.large : 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png'} />
                     <div className={style.profileInfo}>
                         <p className={style.name}>{props.userProfileInfo.fullName}</p>
-                        <ProfileStatus status={props.userStatus} updateUserStatus={props.updateUserStatus} />
+                        <ProfileStatusWithHooks status={props.userStatus} updateUserStatus={props.updateUserStatus} />
                         <div className={style.statusW}>
                             <p className={style.label}>Обо мне:</p>
                             <ProfileAboutMe aboutMe={props.userProfileInfo.aboutMe} />
