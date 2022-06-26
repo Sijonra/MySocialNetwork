@@ -7,8 +7,13 @@ const ProfileStatusWithHooks = props =>{
     let statusRef = React.createRef()
 
     let [editeMode, setEditMode] = useState(false)
+    let [statusInputValue, setStatusInputValue] = useState(props.status ? props.status : '')
 
-    let activateEditMode = () =>{setEditMode(true)}
+    let activateEditMode = () => {
+        if(parseInt(props.currentUserId) === props.userId){
+            setEditMode(true)
+        }
+    }
 
     let updateStatus = () =>{
         setEditMode(false)
@@ -20,13 +25,15 @@ const ProfileStatusWithHooks = props =>{
         props.updateUserStatus(statusRef.current.value)
     }
 
+    let handleInputChange = () => setStatusInputValue(statusRef.current.value);
+
     return(
         <>
             {
                 editeMode
                     ?
                     <>
-                        <input onBlur={deactivateEditeMode} ref={statusRef} type="text" className={style.statusInput}  autoFocus={true}/>
+                        <input value={statusInputValue} onChange={handleInputChange} onBlur={deactivateEditeMode} ref={statusRef} type="text" className={style.statusInput}  autoFocus={true}/>
                         <button onClick={updateStatus}>Сохранить</button>
                     </>
                     :
